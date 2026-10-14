@@ -4,9 +4,13 @@ interface Props {
     artist: string
     genre: string
     releaseYear: number
+    songs: { 
+        title: string
+        duration: number
+    } []
 }
 
-function AlbumDisplay({source, title, artist, genre, releaseYear}: Props) {
+function AlbumDisplay({source, title, artist, genre, releaseYear, songs}: Props) {
     return (
         <div>
             <img src={source} alt={title} />
@@ -15,6 +19,13 @@ function AlbumDisplay({source, title, artist, genre, releaseYear}: Props) {
                 <h2>{artist}</h2>
                 <p>Gatunek: {genre}</p>
                 <p>Rok wydania: {releaseYear}</p>
+                <ol>
+                    {songs.map(song => {
+                        return (
+                            <li>{song.title} - {song.duration}s</li>
+                        )
+                    })}
+                </ol>
             </div>            
         </div>
     )
