@@ -1,16 +1,33 @@
-interface Props {
-    source: string
-    title: string
-    artist: string
-    genre: string
-    releaseYear: number
-    songs: { 
-        title: string
-        duration: number
-    } []
+interface SongProps {
+    title: string; // Tytuł utworu
+    duration: number; // Długość utworu w sekundach
 }
 
-function AlbumDisplay({source, title, artist, genre, releaseYear, songs}: Props) {
+interface AlbumProps {
+    source: string; // Ścieżka do pliku zdjęcia okładki albumu
+    title: string; // Tytuł albumu
+    artist: string; // Nazwa wykonawcy albumu
+    genre: string; // Gatunek albumu
+    releaseYear: number; // Rok wydania albumu
+    songs: SongProps[]; // Tablica obiektów piosenek
+}
+
+function Song({ title, duration }: SongProps) {
+    return (
+        <li>
+            {title} - {duration}s
+        </li>
+    );
+}
+
+function AlbumDisplay({
+    source,
+    title,
+    artist,
+    genre,
+    releaseYear,
+    songs,
+}: AlbumProps) {
     return (
         <div>
             <img src={source} alt={title} />
@@ -20,15 +37,15 @@ function AlbumDisplay({source, title, artist, genre, releaseYear, songs}: Props)
                 <p>Gatunek: {genre}</p>
                 <p>Rok wydania: {releaseYear}</p>
                 <ol>
-                    {songs.map(song => {
+                    {songs.map((song) => {
                         return (
-                            <li>{song.title} - {song.duration}s</li>
-                        )
+                            <Song title={song.title} duration={song.duration} />
+                        );
                     })}
                 </ol>
-            </div>            
+            </div>
         </div>
-    )
+    );
 }
 
-export default AlbumDisplay
+export default AlbumDisplay;
