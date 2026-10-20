@@ -1,0 +1,10 @@
+img{
+    width: 20vw;
+}
+.element-list{
+    display: flex;
+    flex-direction: row;
+}
+div{
+    margin: 20px;
+}

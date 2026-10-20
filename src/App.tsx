@@ -1,69 +1,68 @@
 import MovieDisplay from "./components/MovieDisplay";
 import BookDisplay from "./components/BookDisplay";
 import AlbumDisplay from "./components/AlbumDisplay";
+import { movies, books, albums } from "./data"
+
+movies.sort((a, b) => a.title.localeCompare(b.title));
+books.sort((a, b) => a.title.localeCompare(b.title));
+albums.sort((a, b) => a.title.localeCompare(b.title))
 
 function App() {
     return (
         <main>
-            <MovieDisplay
-                source="/movies/star_wars_2.jpg"
-                title="Star Wars 2"
-                releaseYear={2002}
-            />
-            <MovieDisplay
-                source="/movies/star_wars_3.jpg"
-                title="Star Wars 3"
-                releaseYear={2005}
-            />
-            <MovieDisplay
-                source="/movies/star_wars_4.jpg"
-                title="Star Wars 4"
-                releaseYear={1977}
-            />
+            <h1>Filmy</h1>
+            <div className="element-list">
+                {movies.map((movie) => {
+                    return (
+                        <MovieDisplay {...movie} />
+                    )
+                })}
+            </div>
             <hr />
-            <BookDisplay
-                source="/books/harry_potter_1.jpg"
-                title="Harry Potter 1"
-                releaseYear={1997}
-                pages={328}
-            />
-            <BookDisplay
-                source="/books/harry_potter_2.jpg"
-                title="Harry Potter 2"
-                releaseYear={1998}
-                pages={278}
-            />
-            <BookDisplay
-                source="/books/harry_potter_3.jpg"
-                title="Harry Potter 3"
-                releaseYear={2001}
-                pages={306}
-            />
+            <h1>Książki</h1>
+            <div className="element-list">
+                {books.map((book) => {
+                    return (
+                        <BookDisplay {...book} />
+                    )
+                })}
+            </div>
             <hr />
-            <AlbumDisplay
-                source="/albums/get_rich_or_die_tryin.jpg"
-                title="Get Rich or Die Tryin'"
-                artist="50 Cent"
-                genre="Hip-hop / Gangsta rap"
-                releaseYear={2002}
-                songs={[
-                    { title: "What up gangsta", duration: 179 },
-                    { title: "Patiently Waiting", duration: 288 },
-                    { title: "Many Men (Wish Death)", duration: 256 },
-                ]}
-            />
-            <AlbumDisplay
-                source="/albums/the_massacre.jpg"
-                title="The Massacre"
-                artist="50 Cent"
-                genre="Hip-hop / Gangsta rap"
-                releaseYear={2005}
-                songs={[
-                    { title: "In My Hood", duration: 231 },
-                    { title: "	This Is 50", duration: 184 },
-                    { title: "I'm Supposed To Die Tonight", duration: 231 },
-                ]}
-            />
+            <h1>Albumy i piosenki</h1>
+            <div className="element-list">
+                {albums.map((album) => {
+                    return (
+                        <AlbumDisplay {...album} />
+                    )
+                })}
+            </div>
+            <hr />
+            <h1>Filmy po 2010</h1>
+            <div className="element-list">
+                {movies.filter((movie) => movie.releaseYear > 2010).map((movie) => {
+                    return (
+                        <MovieDisplay {...movie} />
+                    )
+                })}
+            </div>
+            <hr />
+            <h1>Książki od najnowszych</h1>
+            <div className="element-list">
+                {books.sort((a, b) => b.releaseYear - a.releaseYear).map((book) => {
+                    return (
+                        <BookDisplay {...book} />
+                    )
+                })}
+            </div>
+            <hr />
+            <h1>Albumy i piosenki po ilości piosenek</h1>
+            <div className="element-list">
+                {albums.sort((a, b) => b.songs.length - a.songs.length).map((album) => {
+                    return (
+                        <AlbumDisplay {...album} />
+                    )
+                })}
+            </div>
         </main>
     );
 }

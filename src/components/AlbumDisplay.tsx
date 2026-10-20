@@ -1,16 +1,4 @@
-interface SongProps {
-    title: string; // Tytuł utworu
-    duration: number; // Długość utworu w sekundach
-}
-
-interface AlbumProps {
-    source: string; // Ścieżka do pliku zdjęcia okładki albumu
-    title: string; // Tytuł albumu
-    artist: string; // Nazwa wykonawcy albumu
-    genre: string; // Gatunek albumu
-    releaseYear: number; // Rok wydania albumu
-    songs: SongProps[]; // Tablica obiektów piosenek
-}
+import type { SongProps, AlbumProps } from "../interfaces";
 
 function Song({ title, duration }: SongProps) {
     return (

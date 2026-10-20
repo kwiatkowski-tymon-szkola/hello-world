@@ -1,11 +1,6 @@
-interface Props {
-    source: string; // Ścieżka do pliku zdjęcia okładki książki
-    title: string; // Tytuł książki
-    releaseYear: number; // Rok wydania książki
-    pages: number; // Ilość stron książki
-}
+import type { BookProps } from "../interfaces";
 
-function BookDisplay({ source, title, releaseYear, pages }: Props) {
+function BookDisplay({ source, title, releaseYear, pages }: BookProps) {
     return (
         <div>
             <img src={source} alt={title} />

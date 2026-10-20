@@ -1,10 +1,6 @@
-interface Props {
-    source: string; // Ścieżka do pliku zdjęcia okładki filmu
-    title: string; // Tytuł filmu
-    releaseYear: number; // Rok wydania filmu
-}
+import type { MovieProps } from "../interfaces";
 
-function MovieDisplay({ source, title, releaseYear }: Props) {
+function MovieDisplay({ source, title, releaseYear }: MovieProps) {
     return (
         <div>
             <img src={source} alt={title} />
