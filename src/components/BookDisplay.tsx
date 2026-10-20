@@ -6,8 +6,13 @@ function BookDisplay({ source, title, releaseYear, pages }: BookProps) {
             <img src={source} alt={title} />
             <div>
                 <h1>{title}</h1>
-                <p>Rok wydania: {releaseYear}</p>
-                <p>{pages} stron</p>
+                <div>
+                    <p>Rok wydania: {releaseYear}</p>
+                    <p>{pages} stron</p>
+                    {releaseYear < 2000 ? (
+                        <h3 className="red-label">Klasyka</h3>
+                    ) : null}
+                </div>
             </div>
         </div>
     );

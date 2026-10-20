@@ -1,4 +1,4 @@
-import type { SongProps, AlbumProps } from "../interfaces";
+import type { AlbumProps, SongProps } from "../interfaces";
 
 function Song({ title, duration }: SongProps) {
     return (
@@ -21,16 +21,23 @@ function AlbumDisplay({
             <img src={source} alt={title} />
             <div>
                 <h1>{title}</h1>
-                <h2>{artist}</h2>
-                <p>Gatunek: {genre}</p>
-                <p>Rok wydania: {releaseYear}</p>
-                <ol>
-                    {songs.map((song) => {
-                        return (
-                            <Song title={song.title} duration={song.duration} />
-                        );
-                    })}
-                </ol>
+                <div>
+                    <h2>{artist}</h2>
+                    <p>Gatunek: {genre}</p>
+                    <p>Rok wydania: {releaseYear}</p>
+                    <ol>
+                        {songs.length === 0 ? (
+                            <h3 className="red-label">Brak utworów</h3>
+                        ) : (
+                            songs.map((song) => (
+                                <Song
+                                    title={song.title}
+                                    duration={song.duration}
+                                />
+                            ))
+                        )}
+                    </ol>
+                </div>
             </div>
         </div>
     );

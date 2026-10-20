@@ -1,68 +1,72 @@
 import MovieDisplay from "./components/MovieDisplay";
 import BookDisplay from "./components/BookDisplay";
 import AlbumDisplay from "./components/AlbumDisplay";
-import { movies, books, albums } from "./data"
+import CollapsibleSection from "./components/CollapsibleSection";
+import { movies, books, albums } from "./data";
 
 movies.sort((a, b) => a.title.localeCompare(b.title));
 books.sort((a, b) => a.title.localeCompare(b.title));
-albums.sort((a, b) => a.title.localeCompare(b.title))
+albums.sort((a, b) => a.title.localeCompare(b.title));
 
 function App() {
     return (
         <main>
-            <h1>Filmy</h1>
-            <div className="element-list">
-                {movies.map((movie) => {
-                    return (
+            <CollapsibleSection title="Filmy">
+                {movies.map((movie) => (
+                    <MovieDisplay {...movie} />
+                ))}
+            </CollapsibleSection>
+            <hr />
+            <CollapsibleSection title="Książki">
+                {books.map((book) => (
+                    <BookDisplay {...book} />
+                ))}
+            </CollapsibleSection>
+            <hr />
+            <CollapsibleSection title="Albumy i piosenki">
+                {albums.map((album) => (
+                    <AlbumDisplay {...album} />
+                ))}
+            </CollapsibleSection>
+            <hr />
+            <CollapsibleSection title="Filmy po 2010">
+                {movies
+                    .filter((movie) => movie.releaseYear > 2010)
+                    .map((movie) => (
                         <MovieDisplay {...movie} />
-                    )
-                })}
-            </div>
+                    ))}
+            </CollapsibleSection>
             <hr />
-            <h1>Książki</h1>
-            <div className="element-list">
-                {books.map((book) => {
-                    return (
+            <CollapsibleSection title="Książki od najnowszych">
+                {[...books]
+                    .sort((a, b) => b.releaseYear - a.releaseYear)
+                    .map((book) => (
                         <BookDisplay {...book} />
-                    )
-                })}
-            </div>
+                    ))}
+            </CollapsibleSection>
             <hr />
-            <h1>Albumy i piosenki</h1>
-            <div className="element-list">
-                {albums.map((album) => {
-                    return (
-                        <AlbumDisplay {...album} />
-                    )
-                })}
-            </div>
-            <hr />
-            <h1>Filmy po 2010</h1>
-            <div className="element-list">
-                {movies.filter((movie) => movie.releaseYear > 2010).map((movie) => {
-                    return (
-                        <MovieDisplay {...movie} />
-                    )
-                })}
-            </div>
-            <hr />
-            <h1>Książki od najnowszych</h1>
-            <div className="element-list">
-                {books.sort((a, b) => b.releaseYear - a.releaseYear).map((book) => {
-                    return (
-                        <BookDisplay {...book} />
-                    )
-                })}
-            </div>
-            <hr />
-            <h1>Albumy i piosenki po ilości piosenek</h1>
-            <div className="element-list">
-                {albums.sort((a, b) => b.songs.length - a.songs.length).map((album) => {
-                    return (
-                        <AlbumDisplay {...album} />
-                    )
-                })}
-            </div>
+            <CollapsibleSection title="Album z największą liczbą utworów">
+                {/* DLA KILKU ALBUMÓW Z TAKĄ SAMĄ LICZBĄ UTWORÓW
+                    
+                    albums
+                    .filter((album) => {
+                        return (
+                            album.songs.length ===
+                            Math.max(
+                                ...albums.map((album) => album.songs.length),
+                            )
+                        );
+                    })
+                    .map((album) => {
+                        return <AlbumDisplay {...album} />;
+                    })
+                */}
+                <AlbumDisplay
+                    {...albums.reduce((a, b) =>
+                        a.songs.length > b.songs.length ? a : b,
+                    )}
+                />
+            </CollapsibleSection>
         </main>
     );
 }

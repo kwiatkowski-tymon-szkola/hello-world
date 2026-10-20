@@ -1,9 +1,16 @@
+import type { ReactNode } from "react";
+
+export interface CollapsibleSectionProps {
+    title: string; // Tytuł sekcji
+    children: ReactNode; // Wnętrze sekcji
+}
+
 export interface MovieProps {
     source: string; // Ścieżka do pliku zdjęcia okładki filmu
     title: string; // Tytuł filmu
     releaseYear: number; // Rok wydania filmu
     rating: number; // Ocena filmu w skali od 1 do 10
-} 
+}
 
 export interface BookProps {
     source: string; // Ścieżka do pliku zdjęcia okładki książki
