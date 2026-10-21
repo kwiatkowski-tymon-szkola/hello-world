@@ -10,7 +10,10 @@ albums.sort((a, b) => a.title.localeCompare(b.title));
 
 function App() {
     return (
-        <main>
+        <main className="container">
+            <h1 className="display-3 text-decoration-underline text-center fst-italic">
+                Piękna aplikacja
+            </h1>
             <CollapsibleSection title="Filmy">
                 {movies.map((movie) => (
                     <MovieDisplay {...movie} />
