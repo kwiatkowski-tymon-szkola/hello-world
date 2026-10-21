@@ -11,7 +11,7 @@ function CollapsibleSection({ title, children }: CollapsibleSectionProps) {
                 {isOpen ? "⏷" : "⏵"}
                 {title}
             </h1>
-            {isOpen ? <div className="element-list">{children}</div> : null}
+            {isOpen ? <div className="container">{children}</div> : null}
         </section>
     );
 }

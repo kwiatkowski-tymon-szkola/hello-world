@@ -18,7 +18,7 @@ function AlbumDisplay({
 }: AlbumProps) {
     return (
         <div>
-            <img src={source} alt={title} />
+            <img src={source} alt={title} className="vw-20" />
             <div>
                 <h1>{title}</h1>
                 <div>
@@ -27,7 +27,7 @@ function AlbumDisplay({
                     <p>Rok wydania: {releaseYear}</p>
                     <ol>
                         {songs.length === 0 ? (
-                            <h3 className="red-label">Brak utworów</h3>
+                            <p className="fs-5 text-danger fw-bold fst-italic">Brak utworów</p>
                         ) : (
                             songs.map((song) => (
                                 <Song
