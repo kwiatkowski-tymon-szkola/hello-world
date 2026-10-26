@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 export interface CollapsibleSectionProps {
+    type: string; // Typ sekcji
     title: string; // Tytuł sekcji
     children: ReactNode; // Wnętrze sekcji
 }
@@ -19,16 +20,14 @@ export interface BookProps {
     pages: number; // Ilość stron książki
 }
 
-export interface SongProps {
-    title: string; // Tytuł utworu
-    duration: number; // Długość utworu w sekundach
-}
-
 export interface AlbumProps {
     source: string; // Ścieżka do pliku zdjęcia okładki albumu
     title: string; // Tytuł albumu
     artist: string; // Nazwa wykonawcy albumu
     genre: string; // Gatunek albumu
     releaseYear: number; // Rok wydania albumu
-    songs: SongProps[]; // Tablica obiektów piosenek
+    songs: {
+        title: string; // Tytuł utworu
+        duration: number; // Długość utworu w sekundach
+    }[]; // Tablica obiektów piosenek
 }

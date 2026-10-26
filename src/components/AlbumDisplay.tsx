@@ -1,13 +1,7 @@
-import type { AlbumProps, SongProps } from "../interfaces";
+import type { AlbumProps } from "../interfaces";
 
-function Song({ title, duration, index }: SongProps & { index: number }) {
-    return (
-        <tr>
-            <th scope="row">{index}</th>
-            <td>{title}</td>
-            <td className="text-end">{duration}s</td>
-        </tr>
-    );
+function handleSongClick(songTitle: string, albumTitle: string) {
+    console.log(`Wybrano utwór: ${songTitle} z ${albumTitle}`);
 }
 
 function AlbumDisplay({
@@ -41,11 +35,17 @@ function AlbumDisplay({
                         </thead>
                         <tbody className="table-group-divider">
                             {songs.map((song, index) => (
-                                <Song
-                                    title={song.title}
-                                    duration={song.duration}
-                                    index={index + 1}
-                                />
+                                <tr
+                                    onClick={() =>
+                                        handleSongClick(song.title, title)
+                                    }
+                                >
+                                    <th scope="row">{index + 1}</th>
+                                    <td>{song.title}</td>
+                                    <td className="text-end">
+                                        {song.duration}s
+                                    </td>
+                                </tr>
                             ))}
                         </tbody>
                     </table>

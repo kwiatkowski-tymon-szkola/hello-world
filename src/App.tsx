@@ -14,25 +14,26 @@ function App() {
             <h1 className="display-3 text-decoration-underline text-center fst-italic">
                 Piękna aplikacja
             </h1>
-            <CollapsibleSection title="Filmy">
+            <CollapsibleSection type="movie" title="Filmy">
                 {movies.map((movie) => (
                     <MovieDisplay {...movie} />
                 ))}
             </CollapsibleSection>
             <hr />
-            <CollapsibleSection title="Książki">
+            <CollapsibleSection type="book" title="Książki">
                 {books.map((book) => (
                     <BookDisplay {...book} />
                 ))}
             </CollapsibleSection>
             <hr />
-            <CollapsibleSection title="Albumy i piosenki">
+            <CollapsibleSection type="album" title="Albumy i piosenki">
                 {albums.map((album) => (
                     <AlbumDisplay {...album} />
                 ))}
             </CollapsibleSection>
+            {/*
             <hr />
-            <CollapsibleSection title="Filmy po 2010">
+            <CollapsibleSection type="movie" title="Filmy po 2010">
                 {movies
                     .filter((movie) => movie.releaseYear > 2010)
                     .map((movie) => (
@@ -40,7 +41,7 @@ function App() {
                     ))}
             </CollapsibleSection>
             <hr />
-            <CollapsibleSection title="Książki od najnowszych">
+            <CollapsibleSection type="book" title="Książki od najnowszych">
                 {[...books]
                     .sort((a, b) => b.releaseYear - a.releaseYear)
                     .map((book) => (
@@ -48,28 +49,17 @@ function App() {
                     ))}
             </CollapsibleSection>
             <hr />
-            <CollapsibleSection title="Album z największą liczbą utworów">
-                {/* DLA KILKU ALBUMÓW Z TAKĄ SAMĄ LICZBĄ UTWORÓW
-                    
-                    albums
-                    .filter((album) => {
-                        return (
-                            album.songs.length ===
-                            Math.max(
-                                ...albums.map((album) => album.songs.length),
-                            )
-                        );
-                    })
-                    .map((album) => {
-                        return <AlbumDisplay {...album} />;
-                    })
-                */}
+            <CollapsibleSection
+                type="album"
+                title="Album z największą liczbą utworów"
+            >
                 <AlbumDisplay
                     {...albums.reduce((a, b) =>
                         a.songs.length > b.songs.length ? a : b,
                     )}
                 />
             </CollapsibleSection>
+            */}
         </main>
     );
 }
