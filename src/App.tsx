@@ -9,29 +9,29 @@ books.sort((a, b) => a.title.localeCompare(b.title));
 albums.sort((a, b) => a.title.localeCompare(b.title));
 
 function App() {
-    return (
-        <main className="container">
-            <h1 className="display-3 text-decoration-underline text-center fst-italic">
-                Piękna aplikacja
-            </h1>
-            <CollapsibleSection type="movie" title="Filmy">
-                {movies.map((movie) => (
-                    <MovieDisplay {...movie} />
-                ))}
-            </CollapsibleSection>
-            <hr />
-            <CollapsibleSection type="book" title="Książki">
-                {books.map((book) => (
-                    <BookDisplay {...book} />
-                ))}
-            </CollapsibleSection>
-            <hr />
-            <CollapsibleSection type="album" title="Albumy i piosenki">
-                {albums.map((album) => (
-                    <AlbumDisplay {...album} />
-                ))}
-            </CollapsibleSection>
-            {/*
+  return (
+    <main className="container">
+      <h1 className="display-3 text-decoration-underline text-center fst-italic">
+        Piękna aplikacja
+      </h1>
+      <CollapsibleSection type="movie" title="Filmy">
+        {movies.map((movie) => (
+          <MovieDisplay {...movie} />
+        ))}
+      </CollapsibleSection>
+      <hr />
+      <CollapsibleSection type="book" title="Książki">
+        {books.map((book) => (
+          <BookDisplay {...book} />
+        ))}
+      </CollapsibleSection>
+      <hr />
+      <CollapsibleSection type="album" title="Albumy i piosenki">
+        {albums.map((album) => (
+          <AlbumDisplay {...album} />
+        ))}
+      </CollapsibleSection>
+      {/*
             <hr />
             <CollapsibleSection type="movie" title="Filmy po 2010">
                 {movies
@@ -60,8 +60,8 @@ function App() {
                 />
             </CollapsibleSection>
             */}
-        </main>
-    );
+    </main>
+  );
 }
 
 export default App;
