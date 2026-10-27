@@ -1,9 +1,7 @@
-import type { ReactNode } from "react";
-
-export interface CollapsibleSectionProps {
+export interface CollapsibleSectionProps<T extends {title: string}> {
   type: "movie" | "book" | "album"; // Typ sekcji
   title: string; // Tytuł sekcji
-  children: ReactNode; // Wnętrze sekcji
+  data: T[]; // datatata
 }
 
 export interface MovieProps {

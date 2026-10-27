@@ -1,13 +1,17 @@
 import { useState } from "react";
 
-import type { CollapsibleSectionProps } from "../interfaces";
+import MovieDisplay from "./MovieDisplay";
+import BookDisplay from "./BookDisplay";
+import AlbumDisplay from "./AlbumDisplay";
 
-function CollapsibleSection({
+import type { CollapsibleSectionProps, MovieProps, BookProps, AlbumProps } from "../interfaces";
+
+function CollapsibleSection<T extends { title: string }>({
   type,
   title,
-  children,
-}: CollapsibleSectionProps) {
-  const [isOpen, setIsOpen] = useState(true);
+  data
+}: CollapsibleSectionProps<T>) {
+  const [isOpen, setIsOpen] = useState(false);
   const [search, setSearch] = useState("");
 
   return (
@@ -43,7 +47,20 @@ function CollapsibleSection({
             </div>
           </div>
           <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3">
-            {children}
+            {
+              data.map((item) => {
+                if (item.title.toLowerCase().includes(search.toLowerCase())) {
+                  switch (type) {
+                    case "movie":
+                      return <MovieDisplay key={item.title} {...(item as unknown as MovieProps)} />;
+                    case "book":
+                      return <BookDisplay key={item.title} {...(item as unknown as BookProps)} />;
+                    case "album":
+                      return <AlbumDisplay key={item.title} {...(item as unknown as AlbumProps)} />;
+                  }
+                }
+              })
+            }
           </div>
         </div>
       ) : null}
