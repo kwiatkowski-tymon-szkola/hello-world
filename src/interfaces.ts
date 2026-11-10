@@ -1,29 +1,27 @@
-export interface CollapsibleSectionProps<T extends {title: string}> {
+export interface CollapsibleSectionProps<Type extends BaseProps> {
   type: "movie" | "book" | "album"; // Typ sekcji
   title: string; // Tytuł sekcji
-  data: T[]; // datatata
+  data: Type[]; // Dane
+  renderItem: (item: Type) => React.ReactNode; // Funkcja renderująca element
 }
 
-export interface MovieProps {
-  source: string; // Ścieżka do pliku zdjęcia okładki filmu
-  title: string; // Tytuł filmu
-  releaseYear: number; // Rok wydania filmu
+export interface BaseProps {
+  source: string; // Ścieżka do pliku zdjęcia okładki
+  title: string; // Tytuł
+  releaseYear: number; // Rok wydania
+}
+
+export interface MovieProps extends BaseProps {
   rating: number; // Ocena filmu w skali od 1 do 10
 }
 
-export interface BookProps {
-  source: string; // Ścieżka do pliku zdjęcia okładki książki
-  title: string; // Tytuł książki
-  releaseYear: number; // Rok wydania książki
+export interface BookProps extends BaseProps {
   pages: number; // Ilość stron książki
 }
 
-export interface AlbumProps {
-  source: string; // Ścieżka do pliku zdjęcia okładki albumu
-  title: string; // Tytuł albumu
+export interface AlbumProps extends BaseProps {
   artist: string; // Nazwa wykonawcy albumu
   genre: string; // Gatunek albumu
-  releaseYear: number; // Rok wydania albumu
   songs: {
     title: string; // Tytuł utworu
     duration: number; // Długość utworu w sekundach
